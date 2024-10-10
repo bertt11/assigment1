@@ -18,7 +18,7 @@ class EventSeeder extends Seeder
     {
         $faker = Faker::create(); // Membuat instance Faker
 
-        // Menambahkan Event 1
+   
         \App\Models\Event::create([
             'title' => 'Tech Expo 2024',
             'venue' => 'Jakarta Convention Center',
@@ -29,11 +29,12 @@ class EventSeeder extends Seeder
             'tags' => 'expo, technology',
             'organizer_id' => 1,
             'event_category_id' => 1,
+            'image_url' => null,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
 
-        // Menambahkan Event 2
+  
         \App\Models\Event::create([
             'title' => 'Indonesian Music Festival',
             'venue' => 'Senayan Park',
@@ -44,11 +45,12 @@ class EventSeeder extends Seeder
             'tags' => 'concert, music',
             'organizer_id' => 2,
             'event_category_id' => 2,
+            'image_url' => null,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
 
-        // Menambahkan Event 3
+     
         \App\Models\Event::create([
             'title' => 'Global Business Conference',
             'venue' => 'Bali Nusa Dua Convention Center',
@@ -59,11 +61,12 @@ class EventSeeder extends Seeder
             'tags' => 'conference, business',
             'organizer_id' => 3,
             'event_category_id' => 3,
+            'image_url' => null,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
 
-        // Menambahkan Event 4
+   
         \App\Models\Event::create([
             'title' => 'Creative Arts Expo',
             'venue' => 'Jakarta Arts Building',
@@ -74,11 +77,12 @@ class EventSeeder extends Seeder
             'tags' => 'expo, arts',
             'organizer_id' => 1,
             'event_category_id' => 1,
+            'image_url' => null,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
 
-        // Menambahkan Event 5
+    
         \App\Models\Event::create([
             'title' => 'Java Jazz Festival 2024',
             'venue' => 'Djakarta Theater',
@@ -89,6 +93,7 @@ class EventSeeder extends Seeder
             'tags' => 'concert, jazz',
             'organizer_id' => 2,
             'event_category_id' => 2,
+            'image_url' => null,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -103,6 +108,7 @@ class EventSeeder extends Seeder
             'tags' => 'conference, education',
             'organizer_id' => 3,
             'event_category_id' => 3,
+            'image_url' => null,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
