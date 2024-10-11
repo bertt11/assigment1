@@ -55,9 +55,7 @@
     <div class="container mt-5">
     <h4>{{ $event->eventCategory->name }}</h4>
         <h1>{{ $event->title }}</h1>
-        
-        <img src="{{ asset($event->image_url ?? 'images/default-banner.jpg') }}" class="img-fluid event-image" alt="Event Banner">
-        
+            <img class = "rounded-t-lg img-fluid" src="https://picsum.photos/500?random" alt="Event Banner">
         <div class="event-details container">
     
     <div class="row mb-3">

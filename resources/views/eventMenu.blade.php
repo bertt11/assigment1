@@ -41,7 +41,10 @@
     <div class="row">
         @foreach($events as $event)
         <div class="col-md-4 mb-4">
-        <img src="{{ asset($event->image_url ? $event->image_url : 'images/default-banner.jpg') }}" class="card-img-top" alt="Event Banner">
+            <a href="#">
+            <img class = "rounded-t-lg img-fluid w-100" src="https://picsum.photos/500?random={{ $loop->index}}" alt="Event Banner">
+            </a>
+        
             <div class="card">
                
                 <div class="card-body">
