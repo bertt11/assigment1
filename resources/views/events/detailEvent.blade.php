@@ -40,7 +40,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="#">Master Event Category</a></li>
-                            <li><a class="dropdown-item" href="#">Master Organizer</a></li>
+                            <li><a class="dropdown-item" href="{{ route('masterOrganizer') }}">Master Organizer</a></li>
                             <li><a class="dropdown-item" href="#">Master Event</a></li>
                         </ul>
                     </li>
@@ -58,18 +58,63 @@
         
         <img src="{{ asset($event->image_url ?? 'images/default-banner.jpg') }}" class="img-fluid event-image" alt="Event Banner">
         
-        <div class="event-details">
-            <p><strong>Organizer:</strong> {{ $event->organizer->name }}</p>
-            <p><strong>Booking URL:</strong> <a href="{{ $event->booking_url }}" target="_blank">{{ $event->booking_url }}</a></p>
-            <p><strong>Date and Time:</strong> {{ \Carbon\Carbon::parse($event->date)->format('D, M d Y') }} - {{ \Carbon\Carbon::parse($event->start_time)->format('H:i A') }}</p>
-            <p><strong>Location:</strong> {{ $event->venue }}</p>
-            <p><strong>About This Event:</strong><br> {{ $event->description }}</p>
-            
-            <p><strong>Tags</strong><br> <div class="card">{{ $event->tags}}</div></p>
-            
+        <div class="event-details container">
+    
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <p><strong style="font-size: 1.5rem;">Organizer:</strong> </p><p>{{ $event->organizer->name }}</p>
+        </div>
+        <div class="col-md-6">
+            <p><strong style="font-size: 1.5rem;">Booking URL:</strong></p> <p> <a href="{{ $event->booking_url }}" target="_blank">{{ $event->booking_url }}</a></p>
         </div>
     </div>
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <p><strong style="font-size: 1.5rem;">Date and Time:</strong></p> <p> {{ \Carbon\Carbon::parse($event->date)->format('D, M d Y') }} - {{ \Carbon\Carbon::parse($event->start_time)->format('H:i A') }}</p>
+        </div>
+        <div class="col-md-6">
+            <p><strong style="font-size: 1.5rem;">Location:</strong></p><p> {{ $event->venue }}</p>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-12">
+            <p><strong style="font-size: 1.5rem;">About This Event:</strong><br></p><p> {{ $event->description }}</p>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-12">
+            <p><strong style="font-size: 1.5rem;">Tags</strong><br>
+                @if($event->tags)
+                    <div class="d-flex flex-wrap">
+                        @foreach(explode(',', $event->tags) as $tag)
+                        <span class="tag-box me-2 mb-2">{{ trim($tag) }}</span>
+                        @endforeach
+                    </div>
+                @endif
+            </p>
+        </div>
+    </div>
+</div>
+
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+<style>
+    .tag-box {
+        display: inline-block;
+        padding: 5px 10px;
+        background-color: white;
+        border: 1px solid black;
+        border-radius: 5px;
+        color: black;
+    }
+
+    .event-details strong {
+        font-size: 1.5rem; /* Besarkan font pada judul */
+    }
+</style>

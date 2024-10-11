@@ -28,6 +28,15 @@ Route::get('/', [EventController::class, 'eventMenu'])->name('eventMenu');
 Route::get('/events/{id}', [EventController::class, 'detailEvent'])->name('events.detailEvent');
 Route::get('/master-organizer', [OrganizerController::class, 'index'])->name('masterOrganizer');
 
+Route::get('/organizers/create', [OrganizerController::class, 'create'])->name('organizers.create');
+Route::post('/organizers', [OrganizerController::class, 'store'])->name('organizers.store');
+Route::get('/organizers/{id}/edit', [OrganizerController::class, 'edit'])->name('organizers.edit');
+Route::put('/organizers/{id}', [OrganizerController::class, 'update'])->name('organizers.update');
+
+// Rute untuk melihat detail organizer
+Route::get('/organizers/{id}', [OrganizerController::class, 'show'])->name('organizers.show');
+
+
    
     
 

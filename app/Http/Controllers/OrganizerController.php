@@ -14,53 +14,88 @@ class OrganizerController extends Controller
     {
         $organizers = Organizer::all(); // Ambil semua data organizer
         return view('masterOrganizer', compact('organizers'));
+
+        
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
-    {
-        //
-    }
+{
+    return view('createOrganizer');
+}
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+public function store(Request $request)
+{
+    // Validasi input
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'facebook_link' => 'nullable|string|max:255',
+        'x_link' => 'nullable|string|max:255',
+        'website_link' => 'nullable|string|max:255',
+        'description' => 'nullable|string',
+    ]);
 
-    /**
-     * Display the specified resource.
-     */
+    $organizer = new Organizer();
+    $organizer->name = $request->input('name');
+    $organizer->facebook_link = $request->input('facebook_link');
+    $organizer->x_link = $request->input('x_link');
+    $organizer->website_link = $request->input('website_link');
+    $organizer->description = $request->input('description');
+    $organizer->save();
+
+    return redirect()->route('masterOrganizer')->with('success', 'Organizer created successfully');
+}
+
+public function edit($id)
+{
+    $organizer = Organizer::findOrFail($id);
+    return view('editOrganizer', compact('organizer'));
+}
+
+public function update(Request $request, $id)
+{
+
+    // Validasi input
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'facebook_link' => 'nullable|string|max:255',
+        'x_link' => 'nullable|string|max:255',
+        'website_link' => 'nullable|string|max:255',
+        'description' => 'nullable|string',
+    ]);
+
+    $organizer = Organizer::findOrFail($id);
+    $organizer->name = $request->input('name');
+    $organizer->facebook_link = $request->input('facebook_link');
+    $organizer->x_link = $request->input('x_link');
+    $organizer->website_link = $request->input('website_link');
+    $organizer->description = $request->input('description');
+    $organizer->save();
+
+    return redirect()->route('masterOrganizer')->with('success', 'Organizer updated successfully');
+}
+
+
+
+
+
+
+
+   //lanjutan rute dari web.php
     public function show(string $id)
     {
-        //
+        $organizer = Organizer::findOrFail($id);
+        return view('detailOrganizer', compact('organizer'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
-    }
+    public function destroy($id)
+{
+    $organizer = Organizer::findOrFail($id);
+    $organizer->delete();
+
+    return redirect()->route('masterOrganizer')->with('success', 'Organizer deleted successfully');
+}
 }

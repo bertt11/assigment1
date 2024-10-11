@@ -46,14 +46,17 @@
                
                 <div class="card-body">
                     <h5 class="card-title">
-                        <a href="{{ route('events.detailEvent', $event->id) }}">{{ $event->title }}</a>
+                    <a href="{{ route('events.detailEvent', $event->id) }}" style="color: black;">{{ $event->title }}</a>
+
                     </h5>
+                    <br>
                     <p class="card-text">
                         <strong>{{ \Carbon\Carbon::parse($event->date)->format('D, M d Y') }} - {{ \Carbon\Carbon::parse($event->start_time)->format('H:i A') }}</strong><br>
                         {{ $event->venue }}<br>
-                        <strong>Free</strong><br>
+                        <br>
+                        Free<br>
                         Organizer: {{ $event->organizer->name }}<br>
-                        Category: {{ $event->eventCategory->name }}<br>
+                       
                     </p>
                 </div>
             </div>
