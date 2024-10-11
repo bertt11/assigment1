@@ -75,17 +75,14 @@ public function update(Request $request, $id)
 }
 
 
-
-
-
-
-
    //lanjutan rute dari web.php
     public function show(string $id)
     {
         $organizer = Organizer::findOrFail($id);
         return view('detailOrganizer', compact('organizer'));
     }
+
+
 
 
     /**

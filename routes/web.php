@@ -36,7 +36,39 @@ Route::put('/organizers/{id}', [OrganizerController::class, 'update'])->name('or
 // Rute untuk melihat detail organizer
 Route::get('/organizers/{id}', [OrganizerController::class, 'show'])->name('organizers.show');
 
+// Tambahkan routing untuk halaman Master Event Category
+Route::get('/master-event-category', [EventCategoryController::class, 'index'])->name('masterEventCategory');
+Route::get('/master-event-category/create', [EventCategoryController::class, 'create'])->name('eventCategory.create');
+Route::post('/master-event-category', [EventCategoryController::class, 'store'])->name('eventCategory.store');
+Route::get('/master-event-category/{id}/edit', [EventCategoryController::class, 'edit'])->name('eventCategory.edit');
+Route::put('/master-event-category/{id}', [EventCategoryController::class, 'update'])->name('eventCategory.update');
+Route::delete('/master-event-category/{id}', [EventCategoryController::class, 'destroy'])->name('eventCategory.destroy');
 
-   
+
+// Rute untuk menampilkan semua event
+Route::get('/events', [EventController::class, 'index'])->name('masterEvent');
+
+// Rute untuk membuat event baru
+Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
+
+// Rute untuk menyimpan event baru
+Route::post('/events', [EventController::class, 'store'])->name('events.store');
+
+// Rute untuk menampilkan event berdasarkan ID
+Route::get('/events/{event}', [EventController::class, 'show'])->name('events.show');
+
+// Rute untuk mengedit event
+Route::get('/events/{event}/edit', [EventController::class, 'edit'])->name('events.edit');
+
+// Rute untuk memperbarui event
+Route::put('/events/{event}', [EventController::class, 'update'])->name('events.update');
+
+// Rute untuk menghapus event
+Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
+
+
+
+
+
     
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\EventCategory;
 use Illuminate\Http\Request;
 
 class EventCategoryController extends Controller
@@ -12,54 +13,51 @@ class EventCategoryController extends Controller
      */
     public function index()
     {
-       
+        $eventCategories = EventCategory::all(); 
+        return view('eventCategories.masterEventCategory', compact('eventCategories')); 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('eventCategories.createEventCategory'); 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+        ]);
+
+        EventCategory::create($request->all()); // Simpan kategori acara baru
+
+        return redirect()->route('masterEventCategory')->with('success', 'Event category created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function edit($id)
     {
-        //
+        $eventCategory = EventCategory::findOrFail($id); 
+        return view('eventCategories.editEventCategory', compact('eventCategory'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+        ]);
+
+        $eventCategory = EventCategory::findOrFail($id);
+        $eventCategory->update($request->all()); // Update kategori acara
+
+        return redirect()->route('masterEventCategory')->with('success', 'Event category updated successfully.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function destroy($id)
     {
-        //
-    }
+        $eventCategory = EventCategory::findOrFail($id);
+        $eventCategory->delete(); // Hapus kategori acara
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->route('masterEventCategory')->with('success', 'Event category deleted successfully.');
     }
 }
