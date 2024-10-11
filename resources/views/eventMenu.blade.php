@@ -41,7 +41,7 @@
     <div class="row">
         @foreach($events as $event)
         <div class="col-md-4 mb-4">
-            <a href="#">
+            <a href="{{ route('events.detailEvent', $event->id) }}">
             <img class = "rounded-t-lg img-fluid w-100" src="https://picsum.photos/500?random={{ $loop->index}}" alt="Event Banner">
             </a>
         
@@ -49,7 +49,7 @@
                
                 <div class="card-body">
                     <h5 class="card-title">
-                    <a href="{{ route('events.detailEvent', $event->id) }}" style="color: black;">{{ $event->title }}</a>
+                    {{ $event->title }}
 
                     </h5>
                     <br>
