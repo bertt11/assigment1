@@ -12,6 +12,16 @@ class EventController extends Controller
     /**
      * Display a listing of the events.
      */
+
+ public function eventMenu()
+    {
+
+    // Ambil semua event dari database, sertakan data organizer dan kategori
+    $events = Event::with('organizer', 'eventCategory')->get();
+
+    // Tampilkan view menu.blade.php dengan data events
+    return view('eventMenu', compact('events'));
+    }
     public function index()
     {
         // Fetch all events and eager load related organizer and eventCategory
@@ -76,11 +86,15 @@ class EventController extends Controller
     /**
      * Show the form for editing the specified event.
      */
-    public function edit($id)
+    public function edit(Event $event)
     {
-        $event = Event::findOrFail($id);
-        $organizers = Organizer::all(); // Fetch all organizers for the form
-        return view('events.updateEvent', compact('event', 'organizers'));
+        // $event = Event::findOrFail($id);
+        // $organizers = Organizer::all(); // Fetch all organizers for the form
+        // return view('events.updateEvent', compact('event', 'organizers'));
+
+        $organizers = Organizer::all(); // Ambil semua organizer
+        $eventCategories = EventCategory::all(); // Ambil semua kategori event
+        return view('events.createEvent', compact('event', 'organizers', 'eventCategories'));
     }
 
     /**

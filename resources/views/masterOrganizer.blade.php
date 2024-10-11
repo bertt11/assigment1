@@ -47,21 +47,24 @@
 </head>
 <body>
      <!-- Navbar -->
-     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid justify-content-center">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                 <ul class="navbar-nav">
+                    <li class="nav-item">
+                        
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Master Data
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Master Event Category</a></li>
+                        <li><a class="dropdown-item" href="{{ route('masterEventCategory') }}">Master Event Category</a></li>
                             <li><a class="dropdown-item" href="{{ route('masterOrganizer') }}">Master Organizer</a></li>
-                            <li><a class="dropdown-item" href="#">Master Event</a></li>
+                            <li><a class="dropdown-item" href="{{ route('masterEvent') }}">Master Event</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">

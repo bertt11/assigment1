@@ -39,9 +39,9 @@
                             Master Data
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Master Event Category</a></li>
+                        <li><a class="dropdown-item" href="{{ route('masterEventCategory') }}">Master Event Category</a></li>
                             <li><a class="dropdown-item" href="{{ route('masterOrganizer') }}">Master Organizer</a></li>
-                            <li><a class="dropdown-item" href="#">Master Event</a></li>
+                            <li><a class="dropdown-item" href="{{ route('masterEvent') }}">Master Event</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">

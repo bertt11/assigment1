@@ -60,6 +60,8 @@ Route::get('/events/{event}', [EventController::class, 'show'])->name('events.sh
 // Rute untuk mengedit event
 Route::get('/events/{event}/edit', [EventController::class, 'edit'])->name('events.edit');
 
+
+
 // Rute untuk memperbarui event
 Route::put('/events/{event}', [EventController::class, 'update'])->name('events.update');
 

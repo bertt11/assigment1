@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Event</title>
+    <title>Edit Event</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .btn-create {
@@ -22,8 +22,8 @@
     </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+   <!-- Navbar -->
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid justify-content-center">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -52,46 +52,46 @@
     </nav>
 
     <div></div> <br>
-    <h1 class="text-center">{{ isset($event) ? 'Edit Event' : 'Create Event' }}</h1>
+    <h1 class="text-center">Edit Event</h1>
 
-    <form action="{{ isset($event) ? route('events.update', $event->id) : route('events.store') }}" method="POST" class="container mt-4">
+    <form action="{{ route('events.update', $event->id) }}" method="POST" class="container mt-4">
         @csrf
-        @if(isset($event))
-            @method('PUT')
-        @endif
+        @method('PUT')
 
         <div class="row mb-3">
             <div class="col-md-6">
                 <label for="title" class="form-label"><strong>Event Title</strong></label>
-                <input type="text" class="form-control" name="title" id="title" value="{{ old('title', $event->title ?? '') }}" required>
+                <input type="text" class="form-control" name="title" id="title" value="{{ old('title', $event->title) }}" required>
             </div>
             <div class="col-md-6">
                 <label for="venue" class="form-label"><strong>Location</strong></label>
-                <input type="text" class="form-control" name="venue" id="venue" value="{{ old('venue', $event->venue ?? '') }}" required>
+                <input type="text" class="form-control" name="venue" id="venue" value="{{ old('venue', $event->venue) }}" required>
             </div>
         </div>
 
         <div class="row mb-3">
     <div class="col-md-6">
-        <label for="event_datetime" class="form-label"><strong>Date and Time</strong></label>
-        <input type="datetime-local" class="form-control" name="event_datetime" id="event_datetime"
-               value="{{ isset($event) ? date('Y-m-d\TH:i', strtotime($event->date . ' ' . $event->start_time)) : old('event_datetime') }}"
-               required>
-    </div>
-</div>
-
-<div class="col-md-6">
         <label for="event_category_id" class="form-label"><strong>Event Category</strong></label>
         <select class="form-control" name="event_category_id" id="event_category_id" required>
-            @foreach($eventCategories as $category)
-                <option value="{{ $category->id }}" {{ isset($event) && $event->event_category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+            @foreach($eventCategories as $eventCategory)
+                <option value="{{ $eventCategory->id }}" {{ $event->event_category_id == $eventCategory->id ? 'selected' : '' }}>{{ $eventCategory->name }}</option>
             @endforeach
         </select>
     </div>
 </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="event_datetime" class="form-label"><strong>Date and Time</strong></label>
+                <input type="datetime-local" class="form-control" name="event_datetime" id="event_datetime"
+                       value="{{ isset($event) ? date('Y-m-d\TH:i', strtotime($event->date . ' ' . $event->start_time)) : old('event_datetime') }}"
+                       required>
+            </div>
+        </div>
+
         <div class="mb-3">
             <label for="description" class="form-label"><strong>Description</strong></label>
-            <textarea class="form-control" name="description" id="description" rows="4">{{ old('description', $event->description ?? '') }}</textarea>
+            <textarea class="form-control" name="description" id="description" rows="4">{{ old('description', $event->description) }}</textarea>
         </div>
 
         <div class="row mb-3">
@@ -99,18 +99,15 @@
                 <label for="organizer" class="form-label"><strong>Organizer</strong></label>
                 <select class="form-control" name="organizer_id" id="organizer_id" required>
                     @foreach($organizers as $organizer)
-                        <option value="{{ $organizer->id }}" {{ isset($event) && $event->organizer_id == $organizer->id ? 'selected' : '' }}>{{ $organizer->name }}</option>
+                        <option value="{{ $organizer->id }}" {{ $event->organizer_id == $organizer->id ? 'selected' : '' }}>{{ $organizer->name }}</option>
                     @endforeach
                 </select>
             </div>
             <div class="col-md-6">
                 <label for="tags" class="form-label"><strong>Tags</strong></label>
-                <input type="text" class="form-control" name="tags" id="tags" value="{{ old('tags', $event->tags ?? '') }}">
+                <input type="text" class="form-control" name="tags" id="tags" value="{{ old('tags', $event->tags) }}">
             </div>
         </div>
-        <div class="row mb-3">
-    
-
 
         <div class="d-flex">
             <button type="submit" class="btn btn-create flex-fill me-2">Save</button>
